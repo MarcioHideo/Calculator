@@ -1,39 +1,31 @@
 from tkinter import ttk
 from tkinter import *
 
-# Create a root, which it is the parent of every widget later
-root = Tk() # object
-frame = ttk.Frame(root) # child of root, but parent of all widgets 
-frame.grid(column=0,row=0)
+class Calculator:
+    def __init__(self, root):
+        self.root = root
+        self.clicked = 0
+        self.result_content = StringVar(value = "You clicked 0 time.")
+        
+        # Creating frame
+        frame = ttk.Frame(self.root, padding= 10)
+        frame.grid()
+
+        # Creating button
+        button = ttk.Button(frame, text = "Click", command = self.calculate)
+        button.grid(column= 0, row = 0)
+
+        # Creating Label
+        label = ttk.Label(frame, textvariable= self.result_content)
+        label.grid(column = 0, row = 1)
+
+    # Function to calculate the clicks
+    def calculate(self):
+        self.clicked+= 1
+        self.result_content.set(f"You clicked {self.clicked} times.")
 
 
-def calculate(*args):
-    ...
-    
-# Creating a button
-button = ttk.Button(frame, text = "Click", command = calculate)
-button.grid(column=0, row=0)
-button['padding'] = 5
-
-
-# s = ttk.Style()
-# s.configure('Danger.TFrame', background = 'red', borderwidth=5)
-# ttk.Frame(root, width=200, height=200, style='Danger.TFrame').grid()
-
-
-
-def print_hierarchy(w, depth = 0):
-    print('  '*depth + w.winfo_class() + ' w=' + str(w.winfo_width()) + ' h=' + str(w.winfo_height()) + ' x=' + str(w.winfo_x()) + ' y=' + str(w.winfo_y()))
-    for i in w.winfo_children():
-        print_hierarchy(i, depth+1)
-
-print_hierarchy(root)
-
-
-# Using Label, only a view with no interaction with user ************************
-# label = ttk.Label(root, text = 'Testing the Label')
-# label.grid(column=0, row=0)
-
-
-
-root.mainloop()
+if __name__ == "__main__":
+    root = Tk()
+    App = Calculator(root)
+    root.mainloop()
