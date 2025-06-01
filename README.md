@@ -11,5 +11,7 @@ This project is a simple calculator application designed to perform basic arithm
 
 ## Getting Started
 
-To use or contribute to this project, follow the instructions provided below.
+To use this code is simple, just copy the repository and then run the following command in the directory:
+`python main.py`
 
+Then, you can use the calculator.
